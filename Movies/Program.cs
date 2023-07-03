@@ -57,22 +57,15 @@ do
             Console.WriteLine("Please enter the new release year: ");
             int newYear = int.Parse(Console.ReadLine());
 
-            int counter = 0;
 
             var movie = movies.FirstOrDefault(m => m.Name == oldname);
-
-            foreach (Movie movie in movies.ToList())
+            if (movie is null) Console.WriteLine("Movie not found ya errrr !!!");
+            else
             {
-                if (movie.Name == oldname)
-                {
-                    movie.Update(newName, newGenre, newYear);
-                    counter++;
-                    Console.WriteLine("Movie updated successfuly");
-                    break;
-                }
+                movie.Update(newName, newGenre, newYear);
+                Console.WriteLine("Movie updated successfuly");
             }
 
-            if (counter == 0) Console.WriteLine("Movie not found ya errrr !!!");
 
 
             break;
@@ -86,21 +79,8 @@ do
 
             Console.WriteLine("Please enter the year of the Movie you want to Delete !");
             int Dyear = int.Parse(Console.ReadLine());
+            movies.Remove(movies.FirstOrDefault(m => m.Name == Dname));
 
-            foreach (var i in movies.ToList())
-            {
-                if (i.Name == Dname && i.Genre == Dgenre && i.Year == Dyear)
-                {
-                    movies.Remove(i);
-                    break;
-                }
-                else
-                {
-                    Console.WriteLine("Movie not found!");
-                }
-
-
-            }
             break;
 
 
